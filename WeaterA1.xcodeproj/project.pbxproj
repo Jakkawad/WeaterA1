@@ -193,6 +193,7 @@
 				TargetAttributes = {
 					846CC7781D9523F700530722 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = W6X8G863UY;
 						ProvisioningStyle = Automatic;
 					};
 					846CC78C1D9523F700530722 = {
@@ -410,6 +411,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = W6X8G863UY;
 				INFOPLIST_FILE = WeaterA1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.all2sale.WeaterA1;
@@ -422,6 +424,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = W6X8G863UY;
 				INFOPLIST_FILE = WeaterA1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.all2sale.WeaterA1;
