@@ -22,7 +22,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GVs-e6-dSj">
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="bEt-qu-ssn">
-                                        <frame key="frameInset" minX="8" minY="22" width="168" height="260"/>
+                                        <frame key="frameInset" minX="19" minY="21" width="168" height="260"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today, July 26, 2014" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="32" translatesAutoresizingMaskIntoConstraints="NO" id="1DR-w3-vl5">
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
@@ -73,7 +73,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tK9-qN-Cpe">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell0" rowHeight="80" id="QcX-YV-Hqj">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="tableCell0" rowHeight="80" id="QcX-YV-Hqj">
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QcX-YV-Hqj" id="Ize-gv-SMi">
@@ -81,7 +81,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GhP-wk-vCc">
-                                                    <frame key="frameInset" minX="8" minY="14" width="50" height="50"/>
+                                                    <frame key="frameInset" minX="14" minY="19" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="DTS-w3-VLx"/>
                                                         <constraint firstAttribute="width" constant="50" id="zU4-lY-yH9"/>
@@ -93,13 +93,13 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FQf-ey-vTV">
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Wednesday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xz1-I9-hHd">
-                                                                    <frame key="frameInset" width="142" height="27"/>
+                                                                    <frame key="frameInset" width="142" height="24"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Cloudy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sk5-hr-W8Z">
-                                                                    <frame key="frameInset" minY="27" width="142" height="24"/>
+                                                                    <frame key="frameInset" minY="24" width="142" height="27"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -138,8 +138,13 @@
                                                 <constraint firstItem="GhP-wk-vCc" firstAttribute="leading" secondItem="Ize-gv-SMi" secondAttribute="leadingMargin" constant="8" id="ylG-Sk-c0L"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="NlB-F2-ESn"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="S9J-x7-RHe"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -153,6 +158,14 @@
                             <constraint firstItem="GVs-e6-dSj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lZp-RW-5Rq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageViewCurrenWeather" destination="u4m-TY-XtC" id="3dT-eB-DI3"/>
+                        <outlet property="lblCureentTemp" destination="qFg-6F-zpK" id="Gyt-VR-9Po"/>
+                        <outlet property="lblCurrentWeatherType" destination="hs0-Z5-t1l" id="yrj-V1-WCQ"/>
+                        <outlet property="lblDate" destination="1DR-w3-vl5" id="Owf-us-cjK"/>
+                        <outlet property="lblLocation" destination="BgO-7Z-tKE" id="rsi-LU-ebo"/>
+                        <outlet property="tableView" destination="tK9-qN-Cpe" id="WM9-ss-PSG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
