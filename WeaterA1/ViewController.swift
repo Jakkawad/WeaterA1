@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    var currentWeather = CurrentWeather()
+    
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblCureentTemp: UILabel!
     @IBOutlet weak var lblLocation: UILabel!
@@ -34,6 +36,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        currentWeather.downloadWeatherDetails {
+            //Setup UI to load downloaded data
+        }
+//        print("URL \(CURRENT_WEATHER_URL)")
         
         // Do any additional setup after loading the view, typically from a nib.
     }
