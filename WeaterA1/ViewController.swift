@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    var currentWeather = CurrentWeather()
+    var currentWeather:CurrentWeather!
     
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblCureentTemp: UILabel!
@@ -19,6 +19,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var lblCurrentWeatherType: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
+    
+    func updateMainUI() {
+        lblDate.text = currentWeather.date
+        print("CurrentWeather = \(currentWeather.date)")
+        lblCureentTemp.text = "\(currentWeather.currentTemp)"
+        print("CurrentWeather Temp = \(currentWeather.currentTemp)")
+        lblCurrentWeatherType.text = currentWeather.weatherType
+        lblLocation.text = currentWeather.cityName
+        imageViewCurrenWeather.image = UIImage(named: currentWeather.weatherType)
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -36,8 +46,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        currentWeather = CurrentWeather()
         currentWeather.downloadWeatherDetails {
             //Setup UI to load downloaded data
+            self.updateMainUI()
         }
 //        print("URL \(CURRENT_WEATHER_URL)")
         
