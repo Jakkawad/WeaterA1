@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import CoreLocation
 import Alamofire
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
 
     var currentWeather:CurrentWeather!
     var forecast:Forecast!
     var forecasts = [Forecast]()
+    
+    let locationManager = CLLocationManager()
+    var currentLocation:CLLocation!
     
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblCureentTemp: UILabel!
@@ -22,6 +26,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var lblCurrentWeatherType: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
+    
+    
+    
+    func locationAuthStatus() {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            currentLocation = locationManager.location
+            Location.sharedInstance.latitude = currentLocation.coordinate.latitude
+            Location.sharedInstance.longitude = currentLocation.coordinate.longitude
+            print("Latitude = \(currentLocation.coordinate.latitude), Longitude = \(currentLocation.coordinate.longitude)")
+        } else {
+            locationManager.requestWhenInUseAuthorization()
+            locationAuthStatus()
+        }
+    }
     
     func downloadForcastDate(completed:@escaping DownloadComplete) {
         //Downloading forecast weather data for TableView
@@ -68,11 +86,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell0!
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        locationAuthStatus()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
 //        forecast = Forecast()
         
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startMonitoringSignificantLocationChanges()
         
         currentWeather = CurrentWeather()
         currentWeather.downloadWeatherDetails {
