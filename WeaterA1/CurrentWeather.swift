@@ -14,7 +14,6 @@ class CurrentWeather {
     var _date:String!
     var _weatherType:String!
     var _currentTemp:Double!
-//    var _highTemp:String!
     
     var cityName:String {
         if _cityName == nil {

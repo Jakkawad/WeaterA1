@@ -44,7 +44,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cIz-MM-ROj">
                                         <frame key="frameInset" minX="207" minY="99" width="147" height="150"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u4m-TY-XtC">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u4m-TY-XtC">
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="L1g-lw-BKA"/>
                                                     <constraint firstAttribute="height" constant="120" id="w7v-O8-k3o"/>
@@ -73,14 +73,14 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tK9-qN-Cpe">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="tableCell0" rowHeight="80" id="QcX-YV-Hqj">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="tableCell0" rowHeight="80" id="QcX-YV-Hqj" customClass="WeatherTableViewCell" customModule="WeaterA1" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QcX-YV-Hqj" id="Ize-gv-SMi">
                                             <frame key="frameInset" width="375" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GhP-wk-vCc">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GhP-wk-vCc">
                                                     <frame key="frameInset" minX="14" minY="19" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="DTS-w3-VLx"/>
@@ -139,6 +139,13 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="imageViewWeatherIcon" destination="GhP-wk-vCc" id="gr6-7T-Xq2"/>
+                                            <outlet property="lblDay" destination="Xz1-I9-hHd" id="sVD-GV-vRh"/>
+                                            <outlet property="lblHighTemp" destination="Afn-U4-FsH" id="mNb-hA-7sh"/>
+                                            <outlet property="lblLowTemp" destination="ug2-lK-Xhk" id="6FR-22-GIS"/>
+                                            <outlet property="lblWeatherType" destination="Sk5-hr-W8Z" id="TsX-8o-V8e"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

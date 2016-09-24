@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var currentWeather:CurrentWeather!
+    var forecast:Forecast!
+    var forecasts = [Forecast]()
     
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblCureentTemp: UILabel!
@@ -19,6 +22,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var lblCurrentWeatherType: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
+    
+    func downloadForcastDate(completed:@escaping DownloadComplete) {
+        //Downloading forecast weather data for TableView
+        let forecastURL = URL(string: FORECAST_URL)!
+        Alamofire.request(forecastURL).responseJSON { response in
+            let result = response.result
+            if let dict = result.value as? Dictionary<String, AnyObject> {
+                if let list = dict["list"] as? [Dictionary<String, AnyObject>] {
+                    for obj in list {
+                        let forecast = Forecast(weatherDict: obj)
+                        self.forecasts.append(forecast)
+                        print("OBJ = \(obj)")
+                    }
+                    self.forecasts.remove(at: 0)
+                    self.tableView.reloadData()
+                }
+            }
+            completed()
+        }
+    }
     
     func updateMainUI() {
         lblDate.text = currentWeather.date
@@ -35,21 +58,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return forecasts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell0 = tableView.dequeueReusableCell(withIdentifier: "tableCell0")
+        let cell0 = tableView.dequeueReusableCell(withIdentifier: "tableCell0") as? WeatherTableViewCell
+        let forecast = forecasts[indexPath.row]
+        cell0?.configureCell(forecast: forecast)
         return cell0!
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        forecast = Forecast()
+        
+        
         currentWeather = CurrentWeather()
         currentWeather.downloadWeatherDetails {
             //Setup UI to load downloaded data
-            self.updateMainUI()
+            self.downloadForcastDate {
+                self.updateMainUI()
+            }
+//            self.updateMainUI()
         }
 //        print("URL \(CURRENT_WEATHER_URL)")
         
