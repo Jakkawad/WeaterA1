@@ -35,6 +35,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             Location.sharedInstance.latitude = currentLocation.coordinate.latitude
             Location.sharedInstance.longitude = currentLocation.coordinate.longitude
             print("Latitude = \(currentLocation.coordinate.latitude), Longitude = \(currentLocation.coordinate.longitude)")
+            currentWeather.downloadWeatherDetails {
+                self.downloadForcastDate {
+                    self.updateMainUI()
+                }
+            }
+            print("Current_weather_url: \(CURRENT_WEATHER_URL)")
         } else {
             locationManager.requestWhenInUseAuthorization()
             locationAuthStatus()
@@ -48,6 +54,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let result = response.result
             if let dict = result.value as? Dictionary<String, AnyObject> {
                 if let list = dict["list"] as? [Dictionary<String, AnyObject>] {
+                    print("list: \(list)")
                     for obj in list {
                         let forecast = Forecast(weatherDict: obj)
                         self.forecasts.append(forecast)
@@ -89,10 +96,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         locationAuthStatus()
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
 //        forecast = Forecast()
         
@@ -102,13 +111,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         locationManager.startMonitoringSignificantLocationChanges()
         
         currentWeather = CurrentWeather()
-        currentWeather.downloadWeatherDetails {
-            //Setup UI to load downloaded data
-            self.downloadForcastDate {
-                self.updateMainUI()
-            }
-//            self.updateMainUI()
-        }
+//        currentWeather.downloadWeatherDetails {
+//            //Setup UI to load downloaded data
+//            self.downloadForcastDate {
+//                self.updateMainUI()
+//            }
+////            self.updateMainUI()
+//        }
 //        print("URL \(CURRENT_WEATHER_URL)")
         
         // Do any additional setup after loading the view, typically from a nib.
