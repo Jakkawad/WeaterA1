@@ -50,6 +50,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func downloadForcastDate(completed:@escaping DownloadComplete) {
         //Downloading forecast weather data for TableView
         let forecastURL = URL(string: FORECAST_URL)!
+        print(URL(string: FORECAST_URL)!)
         Alamofire.request(forecastURL).responseJSON { response in
             let result = response.result
             if let dict = result.value as? Dictionary<String, AnyObject> {
@@ -58,7 +59,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     for obj in list {
                         let forecast = Forecast(weatherDict: obj)
                         self.forecasts.append(forecast)
-                        print("OBJ = \(obj)")
+//                        print("OBJ = \(obj)")
                     }
                     self.forecasts.remove(at: 0)
                     self.tableView.reloadData()
